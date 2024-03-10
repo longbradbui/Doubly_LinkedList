@@ -34,11 +34,11 @@ public:
 	List();
 	~List();
 	bool InsertNewItem(T* data);
-    template <class U>
-    friend ostream& operator<<(ostream& outstream, const List<T>& rhs);
+    int RemoveAll(T& data);
     Node<T>* head;
     Node<T>* tail;
-
+    template <class U>
+    friend ostream& operator<<(ostream& outstream, const List<T>& rhs);
 private:
 };
 #endif
@@ -112,4 +112,10 @@ bool List<T>::InsertNewItem(T* data)
     tail->next = insert_node; // Link the previous last node to the new last node
     tail = insert_node; // Update the tail pointer to point to the new last node 
     return true;
+}
+
+template <class T>
+int List<T>::RemoveAll(T& data)
+{
+
 }
