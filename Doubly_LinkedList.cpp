@@ -32,11 +32,11 @@ int main()
     l1.InsertNewItem(&a7);
     l1.InsertNewItem(&a1);
     cout << l1;
+    l1.GetHeadAndTail();
     cout << l1.RemoveAll(a7) << " duplicates of #" << a7 << " has been removed.";
     cout << endl << l1;
+    l1.GetHeadAndTail();
     l1.ReverseList();
     cout << l1;
-    cout << endl << l1.head << " || " << l1.tail << endl;
+    l1.GetHeadAndTail();
 }
-
-

@@ -38,6 +38,7 @@ public:
 	bool InsertNewItem(T* data);
     int RemoveAll(T& data);
     bool ReverseList();
+    bool GetHeadAndTail() const;
     Node<T>* head;
     Node<T>* tail;
     template <class U>
@@ -57,7 +58,12 @@ template <class T>
 List<T>::~List()
 {
 }
-
+template <class T>
+bool List<T>::GetHeadAndTail() const
+{
+    cout << "HEAD: -> " << (head ? *head->data : T()) << " || TAIL: -> " << (tail ? *tail->data : T()) << endl;
+    return true;
+}
 template <class T>
 bool List<T>::InsertNewItem(T* data)
 {
@@ -103,10 +109,10 @@ bool List<T>::InsertNewItem(T* data)
         else if (*current->data == *insert_node->data)
         {
             // Insert duplicate node after the current node
-            insert_node->next = current->next;
             if (current->next != nullptr)
             {
-                current->next->prev = insert_node;
+              insert_node->next = current->next;
+              current->next->prev = insert_node;
             }
             else // (current->next == nullptr)
             {
