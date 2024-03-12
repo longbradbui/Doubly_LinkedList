@@ -22,12 +22,14 @@ class List
 
         }
         Node<T>* current = rhs.head;
+        outstream << "HEAD <-> ";
         while (current != nullptr)
         {
             T temp = *(current->data);
             outstream << temp << " <-> ";
             current = current->next;
         }
+        outstream << "TAIL" << endl;
         return outstream;
     }
 public:
@@ -35,6 +37,7 @@ public:
 	~List();
 	bool InsertNewItem(T* data);
     int RemoveAll(T& data);
+    bool ReverseList();
     Node<T>* head;
     Node<T>* tail;
     template <class U>
@@ -150,7 +153,7 @@ int List<T>::RemoveAll(T& data)
                 if (current == head)
                 {
                     head = head->next;  // Update head if deleting the first node
-                    if (head->next != nullptr)
+                    if (head != nullptr)
                     {
                         head->prev = nullptr;  // Update the previous pointer of the new head (list does not become empty after deletion)
                     }
@@ -184,4 +187,23 @@ int List<T>::RemoveAll(T& data)
         }
         return count;  // Return the total number of nodes deleted
     }
+}
+
+template <class T>
+bool List<T>::ReverseList() {
+    if (head == nullptr || head == tail) {
+        cerr << "Can't reverse. " << endl;
+        return false;
+    }
+    Node<T>* current = head;
+    head = tail;
+    tail = current;
+    Node<T>* nextNode = nullptr;
+    while (current != nullptr) {
+        nextNode = current->next;
+        current->next = current->prev; // Reverse the next and prev pointers
+        current->prev = nextNode;
+        current = nextNode;
+    }
+    return true;
 }
